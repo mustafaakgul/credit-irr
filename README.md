@@ -1,0 +1,11 @@
+# Credit IRR Calculation Project
+This project is a simple credit IRR calculation project. The project is written in Python and uses the Pandas library for data manipulation and the NumPy library for numerical calculations.
+
+Ref: https://numpy.org/numpy-financial/latest/
+
+
+from credit.models import IRRTable
+IRRTable.objects.bulk_create([
+    IRRTable(index=1, index_type='AY', amount=100),
+    IRRTable(index=2, index_type='AY', amount=200),
+])

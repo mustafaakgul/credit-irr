@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table class="list-table-products" cellpadding="0" cellspacing="0" border="0">
+
+        <thead>
+            <tr>
+                <th>HİZMET / ÜRÜN</th>
+                <th>ÇIKIŞ DEPOSU</th>
+                <th>MİKTAR</th>
+                <th>BİRİM</th>
+                <th>BR. FİYAT</th>
+                <th>VERGİ</th>
+                <th>TOPLAM</th>
+            </tr>
+        </thead>
+
+        <tbody id="product-list-4-loop">
+            {% for form in formset %}
+                    <tr class="item">
+                     <td>
+                        <div class="typeahead" id="typeahead_id_unique">
+                          {{ form.index }}
+                        </div>
+                     </td>
+
+                        <td>
+                            {{ form.index_type }}
+                        </td>
+                        <td>
+                            {{ form.amount }}
+                        </td>
+                    </tr>
+             {% endfor %}
+        </tbody>
+
+    </table>
+
+   <div class="row">
+        <div class="col-md-6">
+            <div class=" wrapper-1 mb-2">
+                    <div class="multi-field-wrapper">
+                        <div class="multi-fields">
+
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <div class=" wrapper-2 w-50 mb-2">
+                    <div class="multi-field-wrapper">
+                        <div class="multi-fields">
+
+                        </div>
+                    </div>
+            </div>
+            <div class=" wrapper-3 w-50 mb-2">
+                    <div class="multi-field-wrapper">
+                        <div class="multi-fields">
+
+                        </div>
+                    </div>
+            </div>
+            <div class=" wrapper-4 w-50 mb-2">
+                    <div class="multi-field-wrapper">
+                        <div class="multi-fields">
+
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+   </div>
+    <div style="border-left: none!important; border-right: none !important; border-bottom: none!important;">
+        <button type="button" class="add_line_button add-form-row"
+                id="{{ formset.prefix }}">
+           <i class="fa fa-plus"></i> YENİ SATIR EKLE
+        </button>
+    </div>
+
+                {{ formset.management_form }}
+</body>
+</html>
