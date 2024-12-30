@@ -28,9 +28,9 @@ class IRRTableAPIView(APIView):
             for credit in credits:
                 cash_flows.append(credit)
 
-            print("IRR Table Values: ", initial_investment, credits)
             irr = get_irr(float(initial_investment), cash_flows)
-            print(irr)
+            data_irr = {"irr": irr}
+            response = Response(data=data_irr, status=status.HTTP_400_BAD_REQUEST)
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
