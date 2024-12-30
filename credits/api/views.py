@@ -30,7 +30,7 @@ class IRRTableAPIView(APIView):
 
             irr = get_irr(float(initial_investment), cash_flows)
             data_irr = {"irr": irr}
-            response = Response(data=data_irr, status=status.HTTP_400_BAD_REQUEST)
+            response = Response(data=data_irr, status=status.HTTP_200_OK)
 
             return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
