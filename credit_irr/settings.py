@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'credits',
 
     # Third Party Apps
-    'django_tables2'
+    'django_tables2',
     'corsheaders'
 ]
 
