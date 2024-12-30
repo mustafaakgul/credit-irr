@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IRR Hesaplama</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="initial-investment" class="form-control" id="initial-investment" value=0>
+
+        <table class="table form-table table-bordered table-sm">
+            <thead class="text-center">
+                <tr>
+                    <th>Index</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for form_data in formset %}
+                <tr class="item">
+                    <td>
+                        {{ form_data.index }}
+                    </td>
+                    <td>
+                        {{ form_data.amount }}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm remove-form-row"
+                                id="{{ formset.prefix }}">
+
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none!important;">
+                    <button type="button" class="btn btn-sm btn-success add-form-row add-formset1-row"
+                            id="{{ formset.prefix }}">Ekle
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        {{ formset.management_form }}
+
+        <button type="submit">Hesapla</button>
+    </form>
+
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/formset.js'%}"></script>
+</body>
+</html>
