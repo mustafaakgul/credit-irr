@@ -8,3 +8,10 @@ class IRRTable(Model):
 
 class Financial(Model):
     total_amount = CharField(max_length=100)
+
+class CreditTable(Model):
+    credit_amount = FloatField()
+    interest = FloatField()
+    tax = FloatField()
+    principal_amount = FloatField()
+    remaining_principal_amount = FloatField()

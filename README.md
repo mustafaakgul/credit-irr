@@ -14,3 +14,7 @@
 
 ### Running in Local
 * python manage.py runserver 185.117.120.164:8080
+
+### Deployment in Production
+* Comment out database settings in settings.py
+* python manage.py createsuperuser adminprod rfa56hA23 adminprod@test.com
