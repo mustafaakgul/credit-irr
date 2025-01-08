@@ -46,6 +46,7 @@ class IRRTableTableAPIView(APIView):
             cash_flows = []
             credit_table_list = []
             initial_investment = serializer.data['initial']
+            current_amount = initial_investment
             credits = serializer.data['credits']
 
             for credit in credits:
@@ -53,7 +54,7 @@ class IRRTableTableAPIView(APIView):
             irr = get_irr(float(initial_investment), cash_flows)
 
             for credit in credits:
-                current_amount = initial_investment
+                #current_amount = initial_investment
                 _interest = calculate_interest(current_amount, irr)
                 _tax = calculate_tax(_interest)
                 _principal_amount = calculate_prn(credit, _interest, _tax)
@@ -67,6 +68,7 @@ class IRRTableTableAPIView(APIView):
                     remaining_principal_amount=_remaining_principal_amount
                     )
                 credit_table_list.append(credit_table)
+                current_amount = _remaining_principal_amount
 
             table = credit_table_list
             data_irr = {"irr": irr, "table": serializers.serialize('json', table)}
