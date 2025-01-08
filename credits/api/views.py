@@ -48,6 +48,11 @@ class IRRTableTableAPIView(APIView):
             initial_investment = serializer.data['initial']
             current_amount = initial_investment
             credits = serializer.data['credits']
+            credit_type = serializer.data['credit_type']
+            consumer_credit_type = serializer.data['consumer_credit_type']
+
+            if (initial_investment < 0):
+                return Response({"Error": "Kredi Tutarı eksi bir değer olamaz."}, status=status.HTTP_400_BAD_REQUEST)
 
             for credit in credits:
                 cash_flows.append(credit)
