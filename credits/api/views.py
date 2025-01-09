@@ -56,7 +56,7 @@ class IRRTableTableAPIView(APIView):
 
             _credit_type = get_credit_type(credit_type)
             if (_credit_type == 0):
-                return Response({"error": "Kredi Türü hatalı."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "Kredi Türü hatalı2."}, status=status.HTTP_400_BAD_REQUEST)
 
             _consumer_credit_type = get_consumer_credit_type(consumer_credit_type)
             if (_consumer_credit_type == 0):
