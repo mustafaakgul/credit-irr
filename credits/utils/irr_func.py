@@ -34,3 +34,30 @@ def calculate_rm_prn(current_amount, principal_amount):
 
 def get_tax_by_credit_type():
     return 5
+
+"""
+    1 Ticari
+    2 Bireysel
+"""
+def get_credit_type(credit_type):
+    if credit_type == 1:
+        return 1
+    elif credit_type == 2:
+        return 2
+    else:
+        return 0
+
+"""
+    1 İhtiyac
+    2 Konut
+    3 Taşıt
+"""
+def get_consumer_credit_type(consumer_credit_type):
+    if consumer_credit_type == 1:
+        return 1
+    elif consumer_credit_type == 2:
+        return 2
+    elif consumer_credit_type == 3:
+        return 3
+    else:
+        return 0
