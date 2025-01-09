@@ -17,3 +17,7 @@ class CreditTable(Model):
     tax = FloatField()
     principal_amount = FloatField()
     remaining_principal_amount = FloatField()
+
+class ResponseModel(Model):
+    type = IntegerField()
+    message = CharField(max_length=1000)

@@ -7,7 +7,7 @@ from django.core import serializers
 from rest_framework.views import APIView
 
 from credits.api.serializers import IRRCreditCreateSerializer
-from credits.models import IRRTable, CreditTable
+from credits.models import IRRTable, CreditTable, ResponseModel
 from credits.utils.irr_func import get_irr, calculate_interest, calculate_tax, calculate_prn, calculate_rm_prn, \
     get_credit_type, get_consumer_credit_type
 
@@ -44,6 +44,8 @@ class IRRTableTableAPIView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = IRRCreditCreateSerializer(data=request.data)
         if serializer.is_valid():
+            resp = ResponseModel()
+
             cash_flows = []
             credit_table_list = []
             initial_investment = serializer.data['initial']
@@ -54,14 +56,14 @@ class IRRTableTableAPIView(APIView):
 
             _credit_type = get_credit_type(credit_type)
             if (_credit_type == 0):
-                return Response({"Error": "Kredi Türü hatalı."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "Kredi Türü hatalı."}, status=status.HTTP_400_BAD_REQUEST)
 
             _consumer_credit_type = get_consumer_credit_type(consumer_credit_type)
             if (_consumer_credit_type == 0):
-                return Response({"Error": "Bireysel Kredi Türü hatalı."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "Bireysel Kredi Türü hatalı."}, status=status.HTTP_400_BAD_REQUEST)
 
             if (initial_investment < 0):
-                return Response({"Error": "Kredi Tutarı eksi bir değer olamaz."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "Kredi Tutarı eksi bir değer olamaz."}, status=status.HTTP_400_BAD_REQUEST)
 
             for credit in credits:
                 cash_flows.append(credit)
