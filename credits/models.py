@@ -5,6 +5,8 @@ from django.db import models
 class IRRTable(Model):
     initial = FloatField()
     credits = models.JSONField(blank=True, default=list)
+    credit_type = IntegerField()
+    consumer_credit_type = IntegerField()
 
 class Financial(Model):
     total_amount = CharField(max_length=100)
