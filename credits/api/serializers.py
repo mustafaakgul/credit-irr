@@ -6,7 +6,7 @@ from credits.models import IRRTable
 class IRRCreditCreateSerializer(ModelSerializer):
     class Meta:
         model = IRRTable
-        fields = ('initial', 'credits', 'credit_type', 'consumer_credit_type')
+        fields = ('initial', 'credits', 'credit_type', 'consumer_credit_type', 'expenses')
 
     # def validate(self, attrs):
     #     if(attrs["parent"]):

@@ -7,6 +7,7 @@ class IRRTable(Model):
     credits = models.JSONField(blank=True, default=list)
     credit_type = IntegerField()
     consumer_credit_type = IntegerField()
+    expenses = models.JSONField(blank=True, default=list)
 
 class Financial(Model):
     total_amount = CharField(max_length=100)

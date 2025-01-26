@@ -23,8 +23,8 @@ def calculate_irr(param):
 def calculate_interest(current_amount, irr):
     return irr * (current_amount / (1 + get_tax_by_credit_type()))
 
-def calculate_tax(interest):
-    return interest * get_tax_by_credit_type()
+def calculate_tax(interest, tax_bsmv, tax_kkdf):
+    return interest * get_tax_by_credit_type(tax_bsmv, tax_kkdf)
 
 def calculate_prn(credit, interest, tax):
     return credit - interest - tax
@@ -32,8 +32,8 @@ def calculate_prn(credit, interest, tax):
 def calculate_rm_prn(current_amount, principal_amount):
     return current_amount - principal_amount
 
-def get_tax_by_credit_type():
-    return 5
+def get_tax_by_credit_type(tax_bsmv, tax_kkdf):
+    return tax_bsmv + tax_kkdf
 
 """
     1 Ticari
