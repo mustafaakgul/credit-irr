@@ -89,7 +89,7 @@ class IRRTableTableAPIView(APIView):
 
             # Calculations
             for expense in expenses:
-                total_expense += expense
+                total_expense += expense.title
 
             base_investment = initial_investment - total_expense
 
