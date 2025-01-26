@@ -33,8 +33,9 @@ class IRRTableIRRAPIView(APIView):
             irr = get_irr(float(initial_investment), cash_flows)
             data_irr = {"irr": irr}
             response = Response(data=data_irr, status=status.HTTP_200_OK)
+            return Response({"error": "Kredi Tutarı boş olamaz."}, status=status.HTTP_400_BAD_REQUEST)
 
-            return response
+            # return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -66,6 +67,10 @@ class IRRTableTableAPIView(APIView):
             # Expenses
             expenses = serializer.data['expenses']
             total_expense = 0
+
+            # Block Variables
+            block_day = serializer.data['block']
+            block_amount = serializer.data['block_amount']
 
             # Tax Rates
             taxes = serializer.data['taxes']
