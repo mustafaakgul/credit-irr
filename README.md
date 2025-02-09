@@ -13,6 +13,10 @@
 ])
 
 ### Running in Local
+* python3 -m venv venv
+* source venv/bin/activate
+* which python
+* pip install -r requirements.txt
 * python manage.py runserver 185.117.120.164:8080
 
 ### Deployment in Production
