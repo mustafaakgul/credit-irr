@@ -17,26 +17,6 @@ class IRRTableGenericAPIView(CreateAPIView):
     serializer_class = IRRCreditCreateSerializer
     permission_classes = [AllowAny]
 
-class IRRTableIRRAPIView(APIView):
-    permission_classes = [AllowAny]
-
-    def post(self, request, *args, **kwargs):
-        serializer = IRRCreditCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            cash_flows = []
-            initial_investment = serializer.data['initial']
-            credits = serializer.data['credits']
-
-            for credit in credits:
-                cash_flows.append(credit)
-
-            irr = get_irr(float(initial_investment), cash_flows)
-            data_irr = {"irr": irr}
-            response = Response(data=data_irr, status=status.HTTP_200_OK)
-
-            return response
-        return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-
 
 class IRRTableTableAPIView(APIView):
     permission_classes = [AllowAny]
