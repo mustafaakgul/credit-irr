@@ -80,6 +80,7 @@ class IRRTableTableAPIView(APIView):
             for credit in credits:
                 cash_flows.append(credit)
             irr = get_irr(float(base_investment), cash_flows)
+            irr = "% {}".format(irr)
 
             for credit in credits:
                 #current_amount = initial_investment
