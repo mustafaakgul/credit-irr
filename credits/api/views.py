@@ -53,8 +53,8 @@ class IRRTableTableAPIView(APIView):
 
             # Tax Rates
             taxes = serializer.data['taxes']
-            tax_bsmv = next((sub for sub in taxes if sub['title'] == "BSMV" and sub['id'] == 0), 0)
-            tax_kkdf = next((sub for sub in taxes if sub['title'] == "KKDF" and sub['id'] == 1), 0)
+            tax_bsmv = next((float(sub['amount']) for sub in taxes if sub['title'] == "BSMV" and sub['id'] == 0), 0)
+            tax_kkdf = next((float(sub['amount']) for sub in taxes if sub['title'] == "KKDF" and sub['id'] == 1), 0)
 
             # Validations
             if (len(credits) == 0):
@@ -73,7 +73,7 @@ class IRRTableTableAPIView(APIView):
 
             # Calculations
             for expense in expenses:
-                total_expense += expense.title
+                total_expense += float(expense['amount'])
 
             base_investment = initial_investment - total_expense
 
@@ -83,7 +83,7 @@ class IRRTableTableAPIView(APIView):
 
             for credit in credits:
                 #current_amount = initial_investment
-                _interest = calculate_interest(current_amount, irr)
+                _interest = calculate_interest(current_amount, irr, tax_bsmv, tax_kkdf)
                 _tax = calculate_tax(_interest, tax_bsmv, tax_kkdf)
                 _principal_amount = calculate_prn(credit, _interest, _tax)
                 _remaining_principal_amount = calculate_rm_prn(current_amount, _principal_amount)

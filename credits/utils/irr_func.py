@@ -20,8 +20,8 @@ def calculate_irr(param):
     return round(npf.irr(param), 5)
 
 
-def calculate_interest(current_amount, irr):
-    return irr * (current_amount / (1 + get_tax_by_credit_type()))
+def calculate_interest(current_amount, irr, tax_bsmv, tax_kkdf):
+    return irr * (current_amount / (1 + get_tax_by_credit_type(tax_bsmv, tax_kkdf)))
 
 def calculate_tax(interest, tax_bsmv, tax_kkdf):
     return interest * get_tax_by_credit_type(tax_bsmv, tax_kkdf)
