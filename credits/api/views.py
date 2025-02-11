@@ -80,7 +80,7 @@ class IRRTableTableAPIView(APIView):
             for credit in credits:
                 cash_flows.append(credit)
             irr = get_irr(float(base_investment), cash_flows)
-            irr = "% {}".format(irr)
+            irr_str = "% {}".format(irr)
 
             for credit in credits:
                 #current_amount = initial_investment
@@ -101,7 +101,7 @@ class IRRTableTableAPIView(APIView):
 
             all_expenses_title = "Peşin Ödenen Masraflar (Vergiler Dahil)"
             table = credit_table_list
-            data_irr = {"irr": irr, "table": serializers.serialize('json', table)}
+            data_irr = {"irr": irr_str, "table": serializers.serialize('json', table)}
             response = Response(data=data_irr, status=status.HTTP_200_OK)
 
             return response
