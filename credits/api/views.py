@@ -100,8 +100,26 @@ class IRRTableTableAPIView(APIView):
                 current_amount = _remaining_principal_amount
 
             all_expenses_title = "Peşin Ödenen Masraflar (Vergiler Dahil)"
+            _prepaid_expenses = 0
+            _interest_payable_on_loans = 0
+            _taxes_on_loan_interest_payable = 0
+            _interest_cost_related_to_loan_blockage = 0
+            _total_cost = 0
+            _monthly_cost_ivo = 0
+            _annual_compound_cost_ivo = 0
             table = credit_table_list
-            data_irr = {"irr": irr_str, "table": serializers.serialize('json', table)}
+
+            data_irr = {
+                "irr": irr_str,
+                "table": serializers.serialize('json', table),
+                "prepaid_expenses": _prepaid_expenses,
+                "interest_payable_on_loans": _interest_payable_on_loans,
+                "taxes_on_loan_interest_payable": _taxes_on_loan_interest_payable,
+                "interest_cost_related_to_loan_blockage": _interest_cost_related_to_loan_blockage,
+                "total_cost": _total_cost,
+                "monthly_cost_ivo": _monthly_cost_ivo,
+                "annual_compound_cost_ivo": _annual_compound_cost_ivo
+            }
             response = Response(data=data_irr, status=status.HTTP_200_OK)
 
             return response
