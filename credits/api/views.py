@@ -100,7 +100,7 @@ class IRRTableTableAPIView(APIView):
                 current_amount = _remaining_principal_amount
 
             all_expenses_title = "Peşin Ödenen Masraflar (Vergiler Dahil)"
-            _prepaid_expenses = 0
+            _prepaid_expenses = total_expense
             _interest_payable_on_loans = 0
             _taxes_on_loan_interest_payable = 0
             _interest_cost_related_to_loan_blockage = 0
