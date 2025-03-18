@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from credits.api.serializers import IRRCreditCreateSerializer
 from credits.models import IRRTable, CreditTable, ResponseModel
 from credits.utils.irr_func import get_irr, calculate_interest, calculate_tax, calculate_prn, calculate_rm_prn, \
-    get_credit_type, get_consumer_credit_type, calculate_interest_of_credit_blockage
+    get_credit_type, get_consumer_credit_type, calculate_interest_of_credit_blockage, transform
 
 
 class IRRTableGenericAPIView(CreateAPIView):
@@ -97,11 +97,11 @@ class IRRTableTableAPIView(APIView):
                 sum_of_tax += _tax
 
                 credit_table = CreditTable(
-                    credit_amount=round(credit,2),
-                    interest=round(_interest,2),
-                    tax=round(_tax,2),
-                    principal_amount=round(_principal_amount,2),
-                    remaining_principal_amount=round(_remaining_principal_amount,2)
+                    credit_amount=transform(credit),
+                    interest=transform(_interest),
+                    tax=transform(_tax),
+                    principal_amount=transform(_principal_amount),
+                    remaining_principal_amount=transform(_remaining_principal_amount)
                     )
                 credit_table_list.append(credit_table)
                 current_amount = _remaining_principal_amount
@@ -119,10 +119,10 @@ class IRRTableTableAPIView(APIView):
             data_irr = {
                 "irr": irr_str,
                 "table": serializers.serialize('json', table),
-                "prepaid_expenses": round(_prepaid_expenses,2),
-                "interest_payable_on_loans": round(_interest_payable_on_loans,2),
-                "taxes_on_loan_interest_payable": round(_taxes_on_loan_interest_payable,2),
-                "interest_cost_related_to_loan_blockage": round(_interest_cost_related_to_loan_blockage,2),
+                "prepaid_expenses": transform(_prepaid_expenses),
+                "interest_payable_on_loans": transform(_interest_payable_on_loans),
+                "taxes_on_loan_interest_payable": transform(_taxes_on_loan_interest_payable),
+                "interest_cost_related_to_loan_blockage": transform(_interest_cost_related_to_loan_blockage),
                 "total_cost": _total_cost,
                 "monthly_cost_ivo": _monthly_cost_ivo,
                 "annual_compound_cost_ivo": _annual_compound_cost_ivo

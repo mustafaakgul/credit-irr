@@ -1,3 +1,5 @@
+import locale as lc
+
 import numpy_financial as npf
 
 def get_irr(initial_investment, cash_flows):
@@ -66,3 +68,8 @@ def calculate_interest_of_credit_blockage(block_amount, block_day, irr):
     x = pow((1 + irr), (block_day / 30))
     res = block_amount - (block_amount / x)
     return res
+
+def transform(value):
+    lc.setlocale(lc.LC_ALL, 'tr_TR.UTF-8')
+    rounded_value = round(value, 2)
+    return lc.currency(rounded_value, symbol=False, grouping=True)
