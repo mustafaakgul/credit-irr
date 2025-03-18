@@ -83,6 +83,7 @@ class IRRTableTableAPIView(APIView):
             irr_str = "% {}".format(irr)
 
             sum_of_interest = 0
+            sum_of_tax = 0
 
             for credit in credits:
                 #current_amount = initial_investment
@@ -92,6 +93,7 @@ class IRRTableTableAPIView(APIView):
                 _remaining_principal_amount = calculate_rm_prn(current_amount, _principal_amount)
 
                 sum_of_interest += _interest
+                sum_of_tax += _tax
 
                 credit_table = CreditTable(
                     credit_amount=credit,
@@ -106,7 +108,7 @@ class IRRTableTableAPIView(APIView):
             all_expenses_title = "Peşin Ödenen Masraflar (Vergiler Dahil)"
             _prepaid_expenses = total_expense
             _interest_payable_on_loans = sum_of_interest
-            _taxes_on_loan_interest_payable = 0
+            _taxes_on_loan_interest_payable = sum_of_tax
             _interest_cost_related_to_loan_blockage = 0
             _total_cost = 0
             _monthly_cost_ivo = 0
