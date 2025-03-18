@@ -97,11 +97,11 @@ class IRRTableTableAPIView(APIView):
                 sum_of_tax += _tax
 
                 credit_table = CreditTable(
-                    credit_amount=credit,
-                    interest=_interest,
-                    tax=_tax,
-                    principal_amount=_principal_amount,
-                    remaining_principal_amount=_remaining_principal_amount
+                    credit_amount=round(credit,2),
+                    interest=round(_interest,2),
+                    tax=round(_tax,2),
+                    principal_amount=round(_principal_amount,2),
+                    remaining_principal_amount=round(_remaining_principal_amount,2)
                     )
                 credit_table_list.append(credit_table)
                 current_amount = _remaining_principal_amount
@@ -119,10 +119,10 @@ class IRRTableTableAPIView(APIView):
             data_irr = {
                 "irr": irr_str,
                 "table": serializers.serialize('json', table),
-                "prepaid_expenses": _prepaid_expenses,
-                "interest_payable_on_loans": _interest_payable_on_loans,
-                "taxes_on_loan_interest_payable": _taxes_on_loan_interest_payable,
-                "interest_cost_related_to_loan_blockage": _interest_cost_related_to_loan_blockage,
+                "prepaid_expenses": round(_prepaid_expenses,2),
+                "interest_payable_on_loans": round(_interest_payable_on_loans,2),
+                "taxes_on_loan_interest_payable": round(_taxes_on_loan_interest_payable,2),
+                "interest_cost_related_to_loan_blockage": round(_interest_cost_related_to_loan_blockage,2),
                 "total_cost": _total_cost,
                 "monthly_cost_ivo": _monthly_cost_ivo,
                 "annual_compound_cost_ivo": _annual_compound_cost_ivo
