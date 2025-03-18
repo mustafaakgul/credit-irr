@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "export LC_ALL=\"en_US.UTF-8\"\nexport LC_CTYPE=\"en_US.UTF-8\"\nsudo dpkg-reconfigure locales",
+  "buildCommand": "sh vercel.sh",
   "builds": [
     {
       "src": "credit_irr/wsgi.py",
