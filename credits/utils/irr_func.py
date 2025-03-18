@@ -64,5 +64,6 @@ def get_consumer_credit_type(consumer_credit_type):
 
 def calculate_interest_of_credit_blockage(block_amount, block_day, irr):
     x = (1 + irr)^(block_day / 30)
+    x = pow((1 + irr), (block_day / 30))
     res = block_amount - (block_amount / x)
     return res
