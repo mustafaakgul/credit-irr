@@ -88,7 +88,8 @@ class IRRTableTableAPIView(APIView):
 
             # Calculations
             for expense in expenses:
-                total_expense += float(expense['amount'])
+                if (expense['amount']):
+                    total_expense += float(expense['amount'])
 
             base_investment = initial_investment - total_expense
 
