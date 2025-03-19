@@ -1,4 +1,4 @@
-import locale as lc
+# import locale as lc
 
 import numpy_financial as npf
 
@@ -70,6 +70,10 @@ def calculate_interest_of_credit_blockage(block_amount, block_day, irr):
     return res
 
 def transform(value):
-    lc.setlocale(lc.LC_ALL, 'en_US.UTF-8') ## tr_TR.UTF-8
+    # lc.setlocale(lc.LC_ALL, 'tr_TR.UTF-8') ## tr_TR.UTF-8 C.utf8 en_US.UTF-8
     rounded_value = round(value, 2)
-    return lc.currency(rounded_value, symbol=False, grouping=True)
+    # return lc.currency(rounded_value, symbol=False, grouping=True)
+    return format_currency(rounded_value)
+
+def format_currency(amount):
+    return '{:,.2f}'.format(amount)
