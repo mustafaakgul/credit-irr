@@ -11,11 +11,21 @@ from credits.models import IRRTable, CreditTable, ResponseModel
 from credits.utils.irr_func import get_irr, calculate_interest, calculate_tax, calculate_prn, calculate_rm_prn, \
     get_credit_type, get_consumer_credit_type, calculate_interest_of_credit_blockage, transform
 
+import os
+
 
 class IRRTableGenericAPIView(CreateAPIView):
     queryset = IRRTable.objects.all()
     serializer_class = IRRCreditCreateSerializer
     permission_classes = [AllowAny]
+
+
+class GetLocale(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        res = os.popen("locale -a")
+        return Response({"result": res}, status=status.HTTP_200_OK)
 
 
 class IRRTableTableAPIView(APIView):
