@@ -24,12 +24,12 @@ class GetLocale(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
-        res = os.popen("locale -a")
-        res = os.popen("export LC_ALL='en_US.UTF-8'")
-        res = os.popen("export LC_CTYPE='en_US.UTF-8'")
-        res = os.popen("sudo dpkg-reconfigure locales")
-        res = os.popen("locale -a")
-        return Response({"result": res}, status=status.HTTP_200_OK)
+        res1 = os.popen("locale -a")
+        res2 = os.popen("export LC_ALL='en_US.UTF-8'")
+        res3 = os.popen("export LC_CTYPE='en_US.UTF-8'")
+        res4 = os.popen("sudo dpkg-reconfigure locales")
+        res5 = os.popen("locale -a")
+        return Response({"result": res5}, status=status.HTTP_200_OK)
 
 
 class IRRTableTableAPIView(APIView):
