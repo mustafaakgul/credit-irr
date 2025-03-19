@@ -100,6 +100,7 @@ class IRRTableTableAPIView(APIView):
             irr_ivo = get_irr_ivo(float(base_investment), cash_flows, block_amount, block_day, total_expense) # IRR IVO
             irr_str = "% {}".format(round(irr * 100, 2))
             irr_ivo_str = "% {}".format(round(irr_ivo * 100, 2))
+            irr_ivo_year = (pow((1 + irr_ivo), 12) -1)
 
             sum_of_interest = 0
             sum_of_tax = 0
@@ -132,7 +133,7 @@ class IRRTableTableAPIView(APIView):
             _interest_cost_related_to_loan_blockage = interest_credit_blockage
             _total_cost = 0
             _monthly_cost_ivo = irr_ivo_str
-            _annual_compound_cost_ivo = 0
+            _annual_compound_cost_ivo = "% {}".format(round(irr_ivo_year * 100, 2))
             table = credit_table_list
 
             data_irr = {
