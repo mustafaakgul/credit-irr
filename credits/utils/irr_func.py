@@ -76,4 +76,9 @@ def transform(value):
     return format_currency(rounded_value)
 
 def format_currency(amount):
-    return '{:,.2f}'.format(amount)
+    formatted =  '{:,.2f}'.format(amount)
+    replace_turkish_currency = formatted.replace(',', '#')
+    replace_turkish_currency = replace_turkish_currency.replace('.', ',')
+    replace_turkish_currency = replace_turkish_currency.replace('#', '.')
+    return replace_turkish_currency
+
