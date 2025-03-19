@@ -25,9 +25,9 @@ class GetLocale(APIView):
 
     def get(self, request, *args, **kwargs):
         res1 = os.popen("locale -a")
-        #res2 = os.popen("export LC_ALL='en_US.UTF-8'")
-        #res3 = os.popen("export LC_CTYPE='en_US.UTF-8'")
-        res34 = os.popen("sudo apt-get install language-pack-tr")
+        res2 = os.popen("export LC_ALL=\"en_US.UTF-8\"")
+        res3 = os.popen("export LC_CTYPE=\"en_US.UTF-8\"")
+        #res34 = os.popen("sudo apt-get install language-pack-tr")
         res4 = os.popen("sudo dpkg-reconfigure locales")
         res5 = os.popen("locale -a")
         return Response({"result": res5}, status=status.HTTP_200_OK)
