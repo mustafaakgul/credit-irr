@@ -9,7 +9,8 @@ from rest_framework.views import APIView
 from credits.api.serializers import IRRCreditCreateSerializer
 from credits.models import IRRTable, CreditTable, ResponseModel
 from credits.utils.irr_func import get_irr, calculate_interest, calculate_tax, calculate_prn, calculate_rm_prn, \
-    get_credit_type, get_consumer_credit_type, calculate_interest_of_credit_blockage, transform, sum_of_total_cost
+    get_credit_type, get_consumer_credit_type, calculate_interest_of_credit_blockage, transform, sum_of_total_cost, \
+    get_irr_ivo
 
 import os
 
@@ -95,8 +96,10 @@ class IRRTableTableAPIView(APIView):
 
             for credit in credits:
                 cash_flows.append(credit)
-            irr = get_irr(float(base_investment), cash_flows)
+            irr = get_irr(float(base_investment), cash_flows)     # IRR ITFA
+            irr_ivo = get_irr_ivo(float(base_investment), cash_flows, block_amount, block_day, total_expense) # IRR IVO
             irr_str = "% {}".format(round(irr * 100, 2))
+            irr_ivo_str = "% {}".format(round(irr_ivo * 100, 2))
 
             sum_of_interest = 0
             sum_of_tax = 0
@@ -128,7 +131,7 @@ class IRRTableTableAPIView(APIView):
             _taxes_on_loan_interest_payable = sum_of_tax
             _interest_cost_related_to_loan_blockage = interest_credit_blockage
             _total_cost = 0
-            _monthly_cost_ivo = 0
+            _monthly_cost_ivo = irr_ivo_str
             _annual_compound_cost_ivo = 0
             table = credit_table_list
 

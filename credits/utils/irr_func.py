@@ -6,6 +6,12 @@ def get_irr(initial_investment, cash_flows):
     params = create_params(initial_investment, cash_flows)
     return calculate_irr(params)
 
+def get_irr_ivo(initial_investment, cash_flows, block_amount, block_day, total_expense):
+    params = create_params(
+        get_ivo_initial_investment(initial_investment, total_expense, block_amount, block_day),
+        rearrange_cash_flows(cash_flows, block_amount, block_day))
+    return calculate_irr(params)
+
 def create_params(initial_investment, cash_flows):
     params = []
     if initial_investment > 0:
@@ -13,6 +19,14 @@ def create_params(initial_investment, cash_flows):
     params.append(initial_investment)
     params.extend(cash_flows)
     return params
+
+def get_ivo_initial_investment(initial_investment, total_expense, block_amount, block_day):
+    return initial_investment - total_expense - (block_amount * (block_day/30))
+
+def rearrange_cash_flows(cash_flows, block_amount, block_day):
+    res = (-1 * cash_flows[0]) + (block_amount * (block_day/30))
+    cash_flows[0] = res
+    return cash_flows
 
 """
     Calculate the internal rate of return of a series of cash flows.
