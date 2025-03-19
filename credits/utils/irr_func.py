@@ -82,3 +82,9 @@ def format_currency(amount):
     replace_turkish_currency = replace_turkish_currency.replace('#', '.')
     return replace_turkish_currency
 
+def sum_of_total_cost(_prepaid_expenses,
+                    _interest_payable_on_loans,
+                    _taxes_on_loan_interest_payable,
+                    _interest_cost_related_to_loan_blockage):
+    return _prepaid_expenses + _interest_payable_on_loans + _taxes_on_loan_interest_payable + _interest_cost_related_to_loan_blockage
+

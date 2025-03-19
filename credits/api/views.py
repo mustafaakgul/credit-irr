@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from credits.api.serializers import IRRCreditCreateSerializer
 from credits.models import IRRTable, CreditTable, ResponseModel
 from credits.utils.irr_func import get_irr, calculate_interest, calculate_tax, calculate_prn, calculate_rm_prn, \
-    get_credit_type, get_consumer_credit_type, calculate_interest_of_credit_blockage, transform
+    get_credit_type, get_consumer_credit_type, calculate_interest_of_credit_blockage, transform, sum_of_total_cost
 
 import os
 
@@ -102,8 +102,6 @@ class IRRTableTableAPIView(APIView):
             sum_of_tax = 0
             interest_credit_blockage = calculate_interest_of_credit_blockage(block_amount, block_day, irr)
 
-            ##
-
             for credit in credits:
                 #current_amount = initial_investment
                 _interest = calculate_interest(current_amount, irr, tax_bsmv, tax_kkdf)
@@ -141,7 +139,12 @@ class IRRTableTableAPIView(APIView):
                 "interest_payable_on_loans": transform(_interest_payable_on_loans),
                 "taxes_on_loan_interest_payable": transform(_taxes_on_loan_interest_payable),
                 "interest_cost_related_to_loan_blockage": transform(_interest_cost_related_to_loan_blockage),
-                "total_cost": _total_cost,
+                "total_cost": transform(sum_of_total_cost(
+                    _prepaid_expenses,
+                    _interest_payable_on_loans,
+                    _taxes_on_loan_interest_payable,
+                    _interest_cost_related_to_loan_blockage
+                )),
                 "monthly_cost_ivo": _monthly_cost_ivo,
                 "annual_compound_cost_ivo": _annual_compound_cost_ivo
             }
