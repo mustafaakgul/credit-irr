@@ -86,6 +86,8 @@ class IRRTableTableAPIView(APIView):
             sum_of_tax = 0
             interest_credit_blockage = calculate_interest_of_credit_blockage(block_amount, block_day, irr)
 
+            ##
+
             for credit in credits:
                 #current_amount = initial_investment
                 _interest = calculate_interest(current_amount, irr, tax_bsmv, tax_kkdf)
