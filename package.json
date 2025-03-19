@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "build:production": "next build",
-    "build:preview": "echo \"Let's build a preview!\" && next build"
+    "build:production": "export LC_ALL=\"en_US.UTF-8\" && export LC_CTYPE=\"en_US.UTF-8\" && sudo dpkg-reconfigure locales"
   }
 }
