@@ -1,4 +1,7 @@
-echo "Mustaf"
-export LC_ALL="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-sudo dpkg-reconfigure locales
+#!/bin/bash
+
+if [[ $VERCEL_ENV == "production"  ]] ; then
+  npm run build:production
+else
+  npm run build:preview
+fi

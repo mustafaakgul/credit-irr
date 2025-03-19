@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build:production": "next build",
+    "build:preview": "echo \"Let's build a preview!\" && next build"
+  }
+}
