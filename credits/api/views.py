@@ -65,7 +65,9 @@ class IRRTableTableAPIView(APIView):
 
             # Block Variables
             block_day = serializer.data['block']
-            block_amount = serializer.data['block_amount']
+            block_amount = 0
+            if (block_day > 0):
+                block_amount = initial_investment
 
             # Tax Rates
             taxes = serializer.data['taxes']
