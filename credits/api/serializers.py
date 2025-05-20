@@ -8,8 +8,9 @@ class IRRCreditCreateSerializer(ModelSerializer):
         model = IRRTable
         fields = ('initial', 'credits', 'credit_type', 'consumer_credit_type', 'expenses', 'block', 'block_amount', 'taxes')
 
-    # def validate(self, attrs):
-    #     if(attrs["parent"]):
-    #         if attrs["parent"].post != attrs["post"]:
-    #             raise serializers.ValidationError("Hata oluştu. Lütfen tekrar deneyiniz.")
-    #     return attrs
+    def validate_initial(self, value):
+        if value is None:
+            raise serializers.ValidationError("Başlangıç değeri boş bırakılamaz.")
+        if value <= 0:
+            raise serializers.ValidationError("Başlangıç değeri 0'dan büyük olmalıdır.")
+        return value
