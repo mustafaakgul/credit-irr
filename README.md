@@ -22,3 +22,25 @@
 ### Deployment in Production
 * Comment out database settings in settings.py
 * python manage.py createsuperuser adminprod rfa56hA23 adminprod@test.com
+
+Vade 99 yerine 240
+Geri ödemelerin toplamını göreceğiz bir input
+bloke 2 sutun yer degistircek
+Bloke sayfalarındaki yıldızlar
+Alttaki ikisi yok ve dipnotlar eklencek
+Vade ve geriödemer sutunları komple hesaplama önüne
+Oranlar farklı ise oranları düzentin vergi oranları silinsin
+Bize ulasın komple kalkca, ürün özellikler kalkcak
+Hakkında, sss, iletişim kalkacak, bu sayfanın geliştirme kalkacak
+Gelişimin altına bu sayfayı paylas wa.me yazılcak, WhatsApp paylas
+Pop op takiler cümle sonunda noktalar kalksın
+Vergi oranları kalkacak en alttaki dipnot
+Kredi türü üstündeki cümlede font büyüklük bold olcak
+Kredi maliyeti henüz hesaplanmıyorsa komple siliyor
+Hesaplanmıyorsa neden girilemiyorsa yönlendirmek lazım yıldızlar eksik olduklarını user a belirt
+Yıldızlı alanlar: ana para,  yıldızlıları metne uygun sekilde duzelt, 3 alan var zorunlu ana yan yana olan
+nan seyleri geliyor validaasyonlar eksik
+Butun pop op dipnotları büyüyecek 
+Bsmv ve kkdf yuzdeyi yazalım
+Vergi oranları tablosu bireysel ticariye gore degiscek
+Hesaplama Tam doğru hesaplamıyor
